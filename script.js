@@ -123,8 +123,11 @@ var searchHistoryList = [];
 
 var cityList = document.querySelector(".buttonSearchHistory")
 
-
 function createSearchHistory() {
+    //whenever this function runs, we want to...
+    //1. grab information from localStorage
+
+    //2. create a button for each string, and put that in our div.
 
     cityList.innerHTML = "";
 
@@ -139,6 +142,7 @@ function createSearchHistory() {
         
         init()
     }
+}
 
 function init() {
     var searchedCityList = JSON.parse(localStorage.getItem("citySearchHistory"));
@@ -155,6 +159,41 @@ function init() {
 
     // if (savedCities !== null) {}
     // console.log(savedCities)
-}
+
+// function createSearchHistory() {
+
+//     cityList.innerHTML = "";
+
+//     for (var i = 0; i < searchHistoryList.length; i++) {
+//         var citySearchList = searchHistoryList[i];
+
+//         var buttonList = document.createElement("button");
+//         buttonList.textContent = citySearchList;
+//         cityList.setAttribute("citySearchHistory", i);
+
+//         cityList.appendChild(buttonList);
+        
+//         init()
+//     }
+// }
+
+// function init() {
+//     var searchedCityList = JSON.parse(localStorage.getItem("citySearchHistory"));
+
+//     if (searchedCityList !== null) {
+//         searchHistoryList = searchedCityList;
+//     }
+
+//     createSearchHistory();
+// }
+
+
+    // searchHistory.append(JSON.parse(searchedCityList));
+
+    // var savedCities = JSON.parse(localStorage.getItem("citySearchHistory"));
+
+    // if (savedCities !== null) {}
+    // console.log(savedCities)
+
 
 
