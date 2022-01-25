@@ -37,6 +37,9 @@
                 
             <!-- append search history dynamically in js -->   
             <div class="buttonSearchHistory">
+              <!-- <div class="searchHistory">
+
+              </div> -->
 
                 <button type="text" id=searchResults class="border border-dark mr-5"></button>
                 </div>
@@ -51,8 +54,8 @@
             <div class="col-12 col-md-9 col-lg-9 mt-5 mt-md-0"  id="mainWeather">
                 <div class="border border-dark rounded p-3 mb-5">
                     <!-- <div class="col"> -->
-                      <div class="location">
-                        <div type="text" class="city" id="currentCity"> </div><span id="date"></span><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather-icon" class="w-icon">
+                      <div class="row location">
+                        <div type="text" class="city" id="currentCity"></div><span id="date"></span><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather-icon" class="w-icon">
                       </div>
 
                       <div class="currentWeather" id="currentInfo">
@@ -62,13 +65,15 @@
                           <!-- <div>75°F</div>  -->
                         </div>
 
-                        <div class="weather-item2" id="humid">
+                        <div class="weather-item2" id="ws1">
+                          <div>Wind: <span id="windSpeed"></span></div>
+                        </div>
+
+                        <div class="weather-item3" id="humid">
                           <div>Humidty: <span id="humidity"></span></div>
                         </div>
 
-                        <div class="weather-item3" id="ws1">
-                          <div>Windspeed: <span id="windSpeed"></span></div>
-                        </div>
+
 
                         <div class="weather-item4" id="uv1">
                           <div>UV Index: <span id="uvIndex"></span></div>
@@ -83,7 +88,7 @@
                   
                     <!-- <div class="col"> -->
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
-                          <div class="day1">Next Day Forecast</div>
+                          <div class="day1"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon1">
                           <div class="temp1">Temp: 76.72°F</div>
                           <div class="windspeed1">Wind: 9.52 MPH</div>
@@ -91,7 +96,7 @@
                         </div>
                         
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
-                          <div class="day2">Second Day Forecast</div>
+                          <div class="day2"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon2">
                           <div class="temp2">Temp: 76.72°F</div>
                           <div class="windspeed2">Wind: 9.52 MPH</div>
@@ -99,7 +104,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
-                          <div class="day3">Third Day Forecast</div>
+                          <div class="day3"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon3">
                           <div class="temp3">Temp: 76.72°F</div>
                           <div class="windspeed3">Wind: 9.52 MPH</div>
@@ -107,7 +112,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
-                          <div class="day4">Fourth Day Forecast</div>
+                          <div class="day4"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon4">
                           <div class="temp4">Temp: 76.72°F</div>
                           <div class="windspeed4">Wind: 9.52 MPH</div>
@@ -115,7 +120,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
-                          <div class="day5">Fifth Day Forecast</div>
+                          <div class="day5"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon5">
                           <div class="temp5">Temp: 76.72°F</div>
                           <div class="windspeed5">Wind: 9.52 MPH</div>

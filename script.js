@@ -56,10 +56,10 @@ var day5Humid = document.querySelector(".humid5");
 
 // var currentWeatherEl = document.getElementById('#currentWeather');
 
+var savedCities = JSON.parse(localStorage.getItem("citySearchHistory")) || [];
+
 searchBtn.addEventListener("click", function () {
   var searchedCity = searchbar.value.trim();
-
-  var savedCities = JSON.parse(localStorage.getItem("citySearchHistory")) || [];
 
   savedCities.push(searchedCity);
 
@@ -104,61 +104,106 @@ function getWeatherInfo(city) {
           return res.json();
         })
         .then(function (data) {
-          console.log(data);
+        //   console.log(data);
 
           var icon = data.current.weather[0].icon
 
           mainDisplayImage.setAttribute('src', `http://openweathermap.org/img/wn/${icon}@2x.png`);
 
-          mainTemp.textContent = data.current.temp;
-          mainHumid.textContent = data.current.humidity;
-          mainWindspeed.textContent = data.current.wind_speed;
+          mainTemp.textContent = data.current.temp + " °F";
+          mainWindspeed.textContent = data.current.wind_speed + " MPH";
+          mainHumid.textContent = data.current.humidity + " %";
+
           mainUV.textContent = data.current.uvi;
-        // add 5 day forecast
+
+            if (data.current.uvi <= 3) {
+                mainUV.style.backgroundColor = "green"
+                mainUV.style.color = "white"
+                mainUV.style.padding = "0px 5px 0px 5px"
+                mainUV.style.borderRadius = "5px"
+            } 
+            
+            if (data.current.uvi > 3) {
+                mainUV.style.backgroundColor = "yellow"
+                mainUV.style.color = "black"
+                mainUV.style.padding = "0px 5px 0px 5px"
+                mainUV.style.borderRadius = "5px"
+            } 
+            
+            if (data.current.uvi > 5) {
+                mainUV.style.backgroundColor = "red"
+                mainUV.style.color = "white"
+                mainUV.style.padding = "0px 5px 0px 5px"
+                mainUV.style.borderRadius = "5px"
+            } 
+          
         });
+
+
     });
 }
+
+function futureForecast() {
+    var queryURL3 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=bea1f09c5d5807a4bcd9c22e60cd333d";
+
+    $('.day1').text(moment().format("(L)"));
+
+    fetch(queryURL3)
+        .then(function (resp) {
+            return resp.json();
+        }) 
+        .then(function (data){
+            console.log(data)
+        })
+}
+
 
 var searchHistoryList = [];
 
 var cityList = document.querySelector(".buttonSearchHistory")
 
+
 function createSearchHistory() {
+    cityList.innerHTML = "";
+    
     //whenever this function runs, we want to...
     //1. grab information from localStorage
-
-    //2. create a button for each string, and put that in our div.
-
-    cityList.innerHTML = "";
-
-    for (var i = 0; i < searchHistoryList.length; i++) {
-        var citySearchList = searchHistoryList[i];
-
-        var buttonList = document.createElement("button");
-        buttonList.textContent = citySearchList;
-        cityList.setAttribute("citySearchHistory", i);
-
-        cityList.appendChild(buttonList);
-        
-        init()
-    }
-}
-
-function init() {
     var searchedCityList = JSON.parse(localStorage.getItem("citySearchHistory"));
 
     if (searchedCityList !== null) {
         searchHistoryList = searchedCityList;
     }
+    console.log(searchHistoryList) //double check the stuff in this array.
+    
+    
+    //2. create a button for each string, and put that in our div.
+    for (var i = 0; i < searchHistoryList.length; i++) {
+        var citySearchList = searchHistoryList[i];
 
+        var buttonList = document.createElement("button");
+        buttonList.textContent = citySearchList;
+
+        // cityList.setAttribute("citySearchHistory", i);
+        // console.log(buttonList)
+
+        //you should also give buttonList an event listener here, before appending.
+        buttonList.addEventListener("click",function(e){
+          console.log("You clicked on ")
+          console.log(e.target)
+        })
+
+        cityList.appendChild(buttonList);
+        
+    }
+}
+
+function init() {
     createSearchHistory();
 }
-    // searchHistory.append(JSON.parse(searchedCityList));
 
-    // var savedCities = JSON.parse(localStorage.getItem("citySearchHistory"));
+init() //call init on pageload.
 
-    // if (savedCities !== null) {}
-    // console.log(savedCities)
+localStorage.removeItem('citySearchHistory');
 
 // function createSearchHistory() {
 

@@ -48,6 +48,10 @@ hr {
     border-width: 1px;
 }
 
+/* .buttonList {
+    background-color: red;
+} */
+
 #searchResults {
     width: 19vw;
     padding-left: 7px;
@@ -57,6 +61,39 @@ hr {
     margin-bottom: 5px;
     background-color: lightgray;
 }
+
+#currentCity {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 15px;
+    padding-right: 5px;
+}
+
+#date {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 8px;
+    padding-right: 10px;
+}
+
+.w-icon {
+    margin-top: -30px;
+}
+
+.buttonSearchHistory button {
+    width: 19vw;
+    margin-top: 5px;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.weather-item1, .weather-item2, .weather-item3, .weather-item4 {
+    margin-bottom: 10px;
+}
+
 
 .weather5Day {
     border: 1px solid black;
