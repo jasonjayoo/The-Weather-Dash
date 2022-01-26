@@ -12,48 +12,56 @@
 </head>
 
 <body>
+  <!-- Webpage Main Header -->
     <header class="container-fluid text-light mb-5 p-3" id="mainHeader">
         <div class="text-center" id="mainTitle">
           <h1>Weather Dashboard</h1>
         </div>
       </header>
-    
+  <!-- Bootstrap Grid System Implemented -->
       <section class="container-fluid">
         <div class="row">
           <div class="col-12 col-md-3 col-lg-3 bg-light">
+            <!-- Searchbar/Input for Users to enter City Name(s) -->
             <div id="searchSection">Search for a city:</div>
                 <input type="text" class="searchbar" name="searchCity" placeholder="enter city here"></input>
-
+            <!-- Search Button to initiate search -->
                 <div class="searchButton">
                 <button for="searchCity" id="searchBtn">Search</button>
                 </div>
 
                 <hr>
-                
+              <!-- Searched City Results (as buttons) Dynamically Created in JS -->
               <div class="buttonSearchHistory"></div>
 
           </div>
-
+          <!-- The Current Searched City's Weather Info Displayed here -->
             <div class="col-12 col-md-9 col-lg-9 mt-5 mt-md-0"  id="mainWeather">
                 <div class="border border-dark rounded p-3 mb-5" id="mainTron">
                       <div class="row location">
-                        <div type="text" class="city" id="currentCity"></div><span id="date"></span><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather-icon" class="w-icon">
+                        <!-- Dynamically generated searched City Names will be placed into here  -->
+                        <div type="text" class="city" id="currentCity"></div>
+                        <!-- Dynamically generated date displayed here -->
+                        <span id="date"></span>
+                        <!-- API weather icon will be inserted here -->
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather-icon" class="w-icon">
                       </div>
 
                       <div class="currentWeather" id="currentInfo">
                         <div class="weather-item1" id="temp">
+                        <!-- Current city's Temperature info here -->
                           <div>Temp: <span id="temperature"></span></div>
                           <!-- Alt 0176 to get degree symbol -->
                         </div>
-
+                        <!-- Current city's windspeed-->
                         <div class="weather-item2" id="ws1">
                           <div>Wind: <span id="windSpeed"></span></div>
                         </div>
-
+                        <!-- Current city's humidity level -->
                         <div class="weather-item3" id="humid">
                           <div>Humidity: <span id="humidity"></span></div>
                         </div>
-
+                        <!-- Current city's UV Index -->
                         <div class="weather-item4" id="uv1">
                           <div>UV Index: <span id="uvIndex"></span></div>
 
@@ -66,6 +74,7 @@
                 <div class="row fiveDayForecast d-flex justify-content-between p-3">
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
+                          <!-- Tomorrow's Forecast with the Date, Weather Icon, Temperature, Windspeed and Humidity Level -->
                           <div class="day1"></div>
                           <img src="http://openweathermap.org/img/wn/01d.png" alt="weather-icon" class="w-icon1">
                           <div class="forecastTemp">Temp: <span class="temp1"></span></div>
@@ -74,6 +83,7 @@
                         </div>
                         
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
+                          <!-- day2 Forecast with the Date, Weather Icon, Temperature, Windspeed and Humidity Level -->
                           <div class="day2"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon2">
                           <div class="forecastTemp">Temp: <span class="temp2"></span></div>
@@ -82,6 +92,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
+                          <!-- day3 Forecast with the Date, Weather Icon, Temperature, Windspeed and Humidity Level -->
                           <div class="day3"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon3">
                           <div class="forecastTemp">Temp: <span class="temp3"></span></div>
@@ -90,6 +101,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
+                          <!-- day4 Forecast with the Date, Weather Icon, Temperature, Windspeed and Humidity Level -->
                           <div class="day4"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon4">
                           <div class="forecastTemp">Temp: <span class="temp4"></span></div>
@@ -98,6 +110,7 @@
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
+                          <!-- day5 Forecast with the Date, Weather Icon, Temperature, Windspeed and Humidity Level -->
                           <div class="day5"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon5">
                           <div class="forecastTemp">Temp: <span class="temp5"></span></div>

@@ -1,10 +1,15 @@
+/* Webpage Header Stylization Specs */
 #mainHeader {
     background: linear-gradient(to top right, #007adf 10%, #22d4b1 100%);
 }
+
+/* Search greeting for users */
 #searchSection {
     font-size: 22px;
     font-weight: 740;
 }
+
+/* Searchbar specs */
 .searchbar {
     width: 19vw;
     margin-top: 2px;
@@ -13,6 +18,7 @@
     margin-bottom: 3px;
 }
 
+/* Search button specs */
 #searchBtn {
     text-align: center;
     border-radius: 5px;
@@ -24,17 +30,20 @@
     background-color: rgb(0, 102, 255);
 }
 
+/* Search Button Pseudo Code for when hovering */
 #searchBtn:hover {
     cursor: pointer;
     background-color: green;
 }
 
+/* Search Button Pseudo Code for when clicked on*/
 #searchBtn:active {
     cursor: pointer;
     color: black;
     background-color: darkgray;
 }
 
+/* Line between the search button and searched results */
 hr {
     display: block;
     margin-top: 0.5em;
@@ -45,21 +54,13 @@ hr {
     border-width: 1px;
 }
 
-#searchResults {
-    width: 19vw;
-    padding-left: 7px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    background-color: lightgray;
-}
-
+/* Current City's Display Specs */
 #mainTron {
     background-color: cornflowerblue;
     color: white;
 }
 
+/* Current City Name Specs */
 #currentCity {
     font-size: 30px;
     font-weight: bold;
@@ -67,6 +68,7 @@ hr {
     padding-right: 5px;
 }
 
+/* Current City's Date Specs */
 #date {
     font-size: 30px;
     font-weight: bold;
@@ -74,10 +76,12 @@ hr {
     padding-right: 10px;
 }
 
+/* Current City's Weather Icon Specs */
 .w-icon {
     margin-top: -30px;
 }
 
+/* Specs for dynamically created search results buttons */
 .buttonSearchHistory button {
     width: 19vw;
     margin-top: 5px;
@@ -89,11 +93,12 @@ hr {
     padding-left: 10px;
 }
 
+/* Specs for Current City's Temp, Wind, Humidity and UV Index */
 .weather-item1, .weather-item2, .weather-item3, .weather-item4 {
     margin-bottom: 10px;
 }
 
-
+/* Five Day Forecast Card Specs */
 .weather5Day {
     border: 1px solid black;
     color: white;
@@ -103,18 +108,20 @@ hr {
     padding-top: 10px;
     padding-right: 2px;
     border-radius: 8px;
-
 }
 
+/* Five Day Forecast Temp, Wind and Humidity Specs */
 .forecastTemp, .forecastWind, .forecastH {
     margin-bottom: 10px;
 }
 
+/* Five Day Forecast Weather Icon Specs */
 .w-icon1, .w-icon2, .w-icon3, .w-icon4, .w-icon5 {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
+/* This is media queries - focused on iphone 11 and 12 */
 @media screen and (max-width: 390px) {
 
 .searchbar {
