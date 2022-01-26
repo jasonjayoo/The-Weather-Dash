@@ -100,7 +100,7 @@ function getWeatherInfo(city) {
     .then(function (data) {
       //console.log(data);
       searchbar.value = "";
-      
+
       var showName = data.name;
 
       mainDisplayCity.textContent = showName;
@@ -283,11 +283,11 @@ function createSearchHistory() {
         //you should also give buttonList an event listener here, before appending.
         buttonList.addEventListener("click",function(e){
         //   searchbar.value = buttonList.textContent
-     console.log(cityList[i])
-          getWeatherInfo();
-console.log(citySearchList)
-console.log(searchHistoryList)
-
+    //  console.log(cityList[i])
+          
+// console.log(citySearchList)
+// console.log(searchHistoryList)
+        getWeatherInfo(buttonList.textContent);
 //   futureForecast(searchedCity) 
 //   createSearchHistory();
           console.log("You clicked on ")
@@ -295,8 +295,10 @@ console.log(searchHistoryList)
         })
 
         cityList.appendChild(buttonList);
+
         
     }
+    
 }
 
 function init() {
