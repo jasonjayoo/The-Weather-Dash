@@ -6,16 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="Description" content="Enter your description here" />
-  <!-- Link to Bootstrap's CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="reset.css" /> -->
   <link rel="stylesheet" href="style.css">
   <title>Weather Dashboard</title>
 </head>
 
 <body>
-
-    <header class="container-fluid bg-primary text-light mb-5 p-3">
+    <header class="container-fluid text-light mb-5 p-3" id="mainHeader">
         <div class="text-center" id="mainTitle">
           <h1>Weather Dashboard</h1>
         </div>
@@ -28,33 +25,17 @@
                 <input type="text" class="searchbar" name="searchCity" placeholder="enter city here"></input>
 
                 <div class="searchButton">
-
                 <button for="searchCity" id="searchBtn">Search</button>
-
                 </div>
 
                 <hr>
                 
-            <!-- append search history dynamically in js -->   
-            <div class="">
-              <!-- <div class="searchHistory">
-
-              </div> -->
-              <div class="buttonSearchHistory">
-                <button type="text" id=searchResults class="border border-dark mr-5"></button>
-              </div>
-            </div>
-                <!-- <div type="text" id=searchResults class="border border-dark mr-5">Search History</div>
-                <div type="text" id=searchResults class="border border-dark mr-5">Search History</div>
-                <div type="text" id=searchResults class="border border-dark mr-5">Search History</div> -->
-
+              <div class="buttonSearchHistory"></div>
 
           </div>
-          
-          <!-- <div class="row ml-2"> -->
+
             <div class="col-12 col-md-9 col-lg-9 mt-5 mt-md-0"  id="mainWeather">
-                <div class="border border-dark rounded p-3 mb-5">
-                    <!-- <div class="col"> -->
+                <div class="border border-dark rounded p-3 mb-5" id="mainTron">
                       <div class="row location">
                         <div type="text" class="city" id="currentCity"></div><span id="date"></span><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather-icon" class="w-icon">
                       </div>
@@ -63,7 +44,6 @@
                         <div class="weather-item1" id="temp">
                           <div>Temp: <span id="temperature"></span></div>
                           <!-- Alt 0176 to get degree symbol -->
-                          <!-- <div>75°F</div>  -->
                         </div>
 
                         <div class="weather-item2" id="ws1">
@@ -73,8 +53,6 @@
                         <div class="weather-item3" id="humid">
                           <div>Humidity: <span id="humidity"></span></div>
                         </div>
-
-
 
                         <div class="weather-item4" id="uv1">
                           <div>UV Index: <span id="uvIndex"></span></div>
@@ -86,56 +64,50 @@
 
                 <h4>5-Day Forecast</h4>
                 <div class="row fiveDayForecast d-flex justify-content-between p-3">
-                  
-                    <!-- <div class="col"> -->
+
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
                           <div class="day1"></div>
                           <img src="http://openweathermap.org/img/wn/01d.png" alt="weather-icon" class="w-icon1">
-                          <div>Temp: <span class="temp1"></span></div>
-                          <div>Wind: <span class="windspeed1"></span></div>
-                          <div>Humidity: <span class="humid1"></span></div>
+                          <div class="forecastTemp">Temp: <span class="temp1"></span></div>
+                          <div class="forecastWind">Wind: <span class="windspeed1"></span></div>
+                          <div class="forecastH">Humidity: <span class="humid1"></span></div>
                         </div>
                         
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
                           <div class="day2"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon2">
-                          <div>Temp: <span class="temp2"></span></div>
-                          <div>Wind: <span class="windspeed2"></span></div>
-                          <div>Humidity: <span class="humid2"></span></div>
+                          <div class="forecastTemp">Temp: <span class="temp2"></span></div>
+                          <div class="forecastWind">Wind: <span class="windspeed2"></span></div>
+                          <div class="forecastH">Humidity: <span class="humid2"></span></div>
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
                           <div class="day3"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon3">
-                          <div>Temp: <span class="temp3"></span></div>
-                          <div>Wind: <span class="windspeed3"></span></div>
-                          <div>Humidity: <span class="humid3"></span></div>
+                          <div class="forecastTemp">Temp: <span class="temp3"></span></div>
+                          <div class="forecastWind">Wind: <span class="windspeed3"></span></div>
+                          <div class="forecastH">Humidity: <span class="humid3"></span></div>
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
                           <div class="day4"></div>
                           <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon4">
-                          <div>Temp: <span class="temp4"></span></div>
-                          <div>Wind: <span class="windspeed4"></span></div>
-                          <div>Humidity: <span class="humid4"></span></div>
+                          <div class="forecastTemp">Temp: <span class="temp4"></span></div>
+                          <div class="forecastWind">Wind: <span class="windspeed4"></span></div>
+                          <div class="forecastH">Humidity: <span class="humid4"></span></div>
                         </div>
 
                         <div class="col-12 col-md-2 col-lg-2 weather5Day">
                           <div class="day5"></div>
                           <img src="http://openweathermap.org/img/wn/02d.png" alt="weather-icon" class="w-icon5">
-                          <div>Temp: <span class="temp5"></span></div>
-                          <div>Wind: <span class="windspeed5"></span></div>
-                          <div>Humidity: <span class="humid5"></span></div>
+                          <div class="forecastTemp">Temp: <span class="temp5"></span></div>
+                          <div class="forecastWind">Wind: <span class="windspeed5"></span></div>
+                          <div class="forecastH">Humidity: <span class="humid5"></span></div>
                         </div>
-
-                    <!-- </div> -->
                 </div>
             </div>
-
         </div>
-
       </section>
-
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -143,5 +115,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="script.js"></script>
-
 </html>

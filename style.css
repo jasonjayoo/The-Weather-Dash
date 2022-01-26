@@ -1,9 +1,6 @@
-/* #mainTitle {
+#mainHeader {
     background: linear-gradient(to top right, #007adf 10%, #22d4b1 100%);
-    width: 96.5vw;
-    padding-top: 8px;
-    height: 10vh;
-} */
+}
 #searchSection {
     font-size: 22px;
     font-weight: 740;
@@ -48,10 +45,6 @@ hr {
     border-width: 1px;
 }
 
-/* .buttonList {
-    background-color: red;
-} */
-
 #searchResults {
     width: 19vw;
     padding-left: 7px;
@@ -60,6 +53,11 @@ hr {
     border-radius: 5px;
     margin-bottom: 5px;
     background-color: lightgray;
+}
+
+#mainTron {
+    background-color: cornflowerblue;
+    color: white;
 }
 
 #currentCity {
@@ -84,6 +82,7 @@ hr {
     width: 19vw;
     margin-top: 5px;
     padding: 3px;
+    padding-right: 70px;
     border-radius: 5px;
     text-align: left;
     font-size: 20px;
@@ -99,6 +98,50 @@ hr {
     border: 1px solid black;
     color: white;
     background-color: rgb(32, 29, 44);
+    margin-top: 10px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-right: 2px;
+    border-radius: 8px;
+
+}
+
+.forecastTemp, .forecastWind, .forecastH {
+    margin-bottom: 10px;
+}
+
+.w-icon1, .w-icon2, .w-icon3, .w-icon4, .w-icon5 {
     margin-top: 5px;
-    padding-bottom: 25px;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 390px) {
+
+.searchbar {
+    width: 50vw;
+}
+
+#searchBtn {
+    width: 50vw;
+}
+
+.buttonSearchHistory button {
+    width: 50vw;
+}
+
+#date {
+    font-size: 20px;
+    margin-top: 8.5px;
+    margin-left: 22px;
+
+}
+
+.w-icon {
+    margin-top: -5px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+}
+
+
+    
 }
