@@ -104,141 +104,140 @@ function getWeatherInfo(city) {
 
   // requesting/fetching the data from the above API URL
   fetch(queryURL1)
-    .then(function (response) {
+  .then(function (response) {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(function (data) {
+    console.log("Fetched Data:", data);
+    // clearing search bar text after user clicks the search button.
+    searchbar.value = "";
+    // showName is the variable for the city name that's being requested
+    var showName = data.name;
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+    if (!data.coord) {
+      throw new Error("Coordinates not found in the API response.");
+    }
 
-      return response.json();
-    })
-    .then(function (data) {
-      console.log("Fetched Data:", data);
-      // clearing search bar text after user clicks the search button.
-      searchbar.value = "";
-      // showName is the variable for the city name thats being requested
-      var showName = data.name;
+    // Placing the city that was searched into the DOM
+    mainDisplayCity.textContent = showName;
+    // variables created for the latitude and longitude data
+    var lat = data.coord.lat;
+    var lon = data.coord.lon;
 
-      if (!data.coord) {
-        throw new Error("Coordinates not found in the API response.");
-      }
-      .catch(function (error) {
-        console.error("Error occurred:", error.message);
-        alert("An error occurred. Please check your input or try again later.");
+    console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+
+    // var for OneCall API URL using temperate literal to input the coordinates of the city selected by user in order to obtain specific city's weather information
+    var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+    // requesting/fetching weather data from the API above
+
+    fetch(queryURL2)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        // variable for main weather icon
+        var icon = data.current.weather[0].icon;
+        // Set attribute of the Main Displayed Icon to be image source from the API
+        mainDisplayImage.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon}@2x.png`
+        );
+
+        // The requested city's temperature, windspeed, and humidity specifically pulled from the available weather data and rendering it on the DOM
+        mainTemp.textContent = data.current.temp + " °F";
+        mainWindspeed.textContent = data.current.wind_speed + " MPH";
+        mainHumid.textContent = data.current.humidity + "%";
+
+        // UV index data put through an if condition, so that depending on the index's number the specific stylizations will render showing favorable as green, moderate as yellow, and severe as red.
+        mainUV.textContent = data.current.uvi;
+
+        // Favorable = green
+        if (data.current.uvi <= 3) {
+          mainUV.style.backgroundColor = "green";
+          mainUV.style.color = "white";
+          mainUV.style.padding = "0px 5px 0px 5px";
+          mainUV.style.borderRadius = "5px";
+        }
+
+        // Moderate = yellow
+        if (data.current.uvi > 3) {
+          mainUV.style.backgroundColor = "yellow";
+          mainUV.style.color = "black";
+          mainUV.style.padding = "0px 5px 0px 5px";
+          mainUV.style.borderRadius = "5px";
+        }
+
+        // Severe = red
+        if (data.current.uvi > 5) {
+          mainUV.style.backgroundColor = "red";
+          mainUV.style.color = "white";
+          mainUV.style.padding = "0px 5px 0px 5px";
+          mainUV.style.borderRadius = "5px";
+        }
+
+        // variables for the 5 day future forecast icons data
+        var icon1 = data.daily[1].weather[0].icon;
+        var icon2 = data.daily[2].weather[0].icon;
+        var icon3 = data.daily[3].weather[0].icon;
+        var icon4 = data.daily[4].weather[0].icon;
+        var icon5 = data.daily[5].weather[0].icon;
+
+        // set each of the five day's weather icon as individual days' attributes in the DOM using temperate literal.
+        day1Icon.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon1}.png`
+        );
+
+        day2Icon.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon2}.png`
+        );
+
+        day3Icon.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon3}.png`
+        );
+
+        day4Icon.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon4}.png`
+        );
+
+        day5Icon.setAttribute(
+          "src",
+          `http://openweathermap.org/img/wn/${icon5}.png`
+        );
+
+        // Five day forecast temp data specifically called from the API and rendered in the DOM
+        day1Temp.textContent = data.daily[1].temp.max + " °F";
+        day2Temp.textContent = data.daily[2].temp.max + " °F";
+        day3Temp.textContent = data.daily[3].temp.max + " °F";
+        day4Temp.textContent = data.daily[4].temp.max + " °F";
+        day5Temp.textContent = data.daily[5].temp.max + " °F";
+
+        // Five day forecast windspeed data specifically called from the API and rendered in the DOM
+        day1WS.textContent = data.daily[1].wind_speed + " MPH";
+        day2WS.textContent = data.daily[2].wind_speed + " MPH";
+        day3WS.textContent = data.daily[3].wind_speed + " MPH";
+        day4WS.textContent = data.daily[4].wind_speed + " MPH";
+        day5WS.textContent = data.daily[5].wind_speed + " MPH";
+
+        // Five day forecast humidity data specifically called from the API and rendered in the DOM
+        day1Humid.textContent = data.daily[1].humidity + "%";
+        day2Humid.textContent = data.daily[2].humidity + "%";
+        day3Humid.textContent = data.daily[3].humidity + "%";
+        day4Humid.textContent = data.daily[4].humidity + "%";
+        day5Humid.textContent = data.daily[5].humidity + "%";
       });
+  })
+  .catch(function (error) {
+    console.error("Error occurred:", error.message);
+    alert("An error occurred. Please check your input or try again later.");
+  });
 
-      // Placing the city that was searched into the DOM
-      mainDisplayCity.textContent = showName;
-      // variables created for the latitude and longitude data
-      var lat = data.coord.lat;
-      var lon = data.coord.lon;
-
-      console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-
-      //  var for OneCall API URL using temperate literal to input the coordinates of the city selected by user in order to obtain specific city's weather information
-      var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
-      // requesting/fetching weather data from the API above
-
-      fetch(queryURL2)
-        .then(function (res) {
-          return res.json();
-        })
-        .then(function (data) {
-          // variable for main weather icon
-          var icon = data.current.weather[0].icon;
-          // Set attribute of the Main Displayed Icon to be image source from the API
-          mainDisplayImage.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon}@2x.png`
-          );
-
-          // The requested city's temperature, windspeed and humidity specifically pulled from the available weather data and rendering it on the DOM
-          mainTemp.textContent = data.current.temp + " °F";
-          mainWindspeed.textContent = data.current.wind_speed + " MPH";
-          mainHumid.textContent = data.current.humidity + "%";
-
-          //   UV index data put through an if condition, so that depending on the index's number the specific stylizations will render showing favorable as green, moderate as yellow and severe as red.
-          mainUV.textContent = data.current.uvi;
-
-          //   Favorable = green
-          if (data.current.uvi <= 3) {
-            mainUV.style.backgroundColor = "green";
-            mainUV.style.color = "white";
-            mainUV.style.padding = "0px 5px 0px 5px";
-            mainUV.style.borderRadius = "5px";
-          }
-
-          // Moderate = yellow
-          if (data.current.uvi > 3) {
-            mainUV.style.backgroundColor = "yellow";
-            mainUV.style.color = "black";
-            mainUV.style.padding = "0px 5px 0px 5px";
-            mainUV.style.borderRadius = "5px";
-          }
-
-          // Severe = red
-          if (data.current.uvi > 5) {
-            mainUV.style.backgroundColor = "red";
-            mainUV.style.color = "white";
-            mainUV.style.padding = "0px 5px 0px 5px";
-            mainUV.style.borderRadius = "5px";
-          }
-
-          //   variables for the 5 day future forecast icons data
-          var icon1 = data.daily[1].weather[0].icon;
-          var icon2 = data.daily[2].weather[0].icon;
-          var icon3 = data.daily[3].weather[0].icon;
-          var icon4 = data.daily[4].weather[0].icon;
-          var icon5 = data.daily[5].weather[0].icon;
-
-          // set each of the five day's weather icon as inidividual days attributes in the DOM using temperate literal.
-          day1Icon.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon1}.png`
-          );
-
-          day2Icon.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon2}.png`
-          );
-
-          day3Icon.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon3}.png`
-          );
-
-          day4Icon.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon4}.png`
-          );
-
-          day5Icon.setAttribute(
-            "src",
-            `http://openweathermap.org/img/wn/${icon5}.png`
-          );
-
-          //   Five day forecast temp data specifically called from the API and rendered in the DOM
-          day1Temp.textContent = data.daily[1].temp.max + " °F";
-          day2Temp.textContent = data.daily[2].temp.max + " °F";
-          day3Temp.textContent = data.daily[3].temp.max + " °F";
-          day4Temp.textContent = data.daily[4].temp.max + " °F";
-          day5Temp.textContent = data.daily[5].temp.max + " °F";
-
-          //   Five day forecast windspeed data specifically called from the API and rendered in the DOM
-          day1WS.textContent = data.daily[1].wind_speed + " MPH";
-          day2WS.textContent = data.daily[2].wind_speed + " MPH";
-          day3WS.textContent = data.daily[3].wind_speed + " MPH";
-          day4WS.textContent = data.daily[4].wind_speed + " MPH";
-          day5WS.textContent = data.daily[5].wind_speed + " MPH";
-
-          //   Five day forecast humidity data specifically called from the API and rendered in the DOM
-          day1Humid.textContent = data.daily[1].humidity + "%";
-          day2Humid.textContent = data.daily[2].humidity + "%";
-          day3Humid.textContent = data.daily[3].humidity + "%";
-          day4Humid.textContent = data.daily[4].humidity + "%";
-          day5Humid.textContent = data.daily[5].humidity + "%";
-        });
-    });
 }
 
 // variable cityList created to link the div buttonsearchhistory
