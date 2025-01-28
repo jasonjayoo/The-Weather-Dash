@@ -105,21 +105,40 @@ function getWeatherInfo(city) {
   // requesting/fetching the data from the above API URL
   fetch(queryURL1)
     .then(function (response) {
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       return response.json();
     })
     .then(function (data) {
+      console.log("Fetched Data:", data);
       // clearing search bar text after user clicks the search button.
       searchbar.value = "";
       // showName is the variable for the city name thats being requested
       var showName = data.name;
+
+      if (!data.coord) {
+        throw new Error("Coordinates not found in the API response.");
+      }
+      .catch(function (error) {
+        console.error("Error occurred:", error.message);
+        alert("An error occurred. Please check your input or try again later.");
+      });
+
       // Placing the city that was searched into the DOM
       mainDisplayCity.textContent = showName;
       // variables created for the latitude and longitude data
       var lat = data.coord.lat;
       var lon = data.coord.lon;
+
+      console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+
       //  var for OneCall API URL using temperate literal to input the coordinates of the city selected by user in order to obtain specific city's weather information
       var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
       // requesting/fetching weather data from the API above
+
       fetch(queryURL2)
         .then(function (res) {
           return res.json();
