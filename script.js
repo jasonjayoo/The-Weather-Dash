@@ -91,7 +91,7 @@ $(".day4").text(moment().add(4, "days").format("L"));
 $(".day5").text(moment().add(5, "days").format("L"));
 
 // OpenWeather API Key
-var apiKey = "bea1f09c5d5807a4bcd9c22e60cd333d";
+var apiKey = "2e9adced96940491aac189cb20d2da86";
 
 // Main function that holds all the weather data gathering coding
 function getWeatherInfo(city) {
