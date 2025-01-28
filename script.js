@@ -91,7 +91,7 @@ $(".day4").text(moment().add(4, "days").format("L"));
 $(".day5").text(moment().add(5, "days").format("L"));
 
 // OpenWeather API Key
-var apiKey = "2e9adced96940491aac189cb20d2da86";
+var apiKey = "dc160b08684ed2f6e98f607f04ad69fc";
 
 // Main function that holds all the weather data gathering coding
 function getWeatherInfo(city) {
@@ -133,18 +133,76 @@ function getWeatherInfo(city) {
     var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
     // requesting/fetching weather data from the API above
 
+
+    The errors you’re seeing break down into two primary issues:
+
+    1. Mixed Content Warning
+    This occurs because you're using HTTPS to serve your site but are requesting resources over HTTP. For example:
+    
+    js
+    Copy
+    Edit
+    http://openweathermap.org/img/wn/01d@2x.png
+    To resolve this:
+    
+    Always request resources via HTTPS. OpenWeatherMap supports HTTPS, so update the URL in your code:
+    javascript
+    Copy
+    Edit
+    mainDisplayImage.setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${icon}@2x.png`
+    );
+    And for all other similar image URLs, replace http with https.
+    
+    2. 401 Unauthorized for API Request
+    The 401 Unauthorized error indicates that your API key is invalid or not authorized to access the requested data. This could happen for several reasons:
+    
+    Invalid or Expired API Key: Double-check your apiKey value.
+    Free Tier Restrictions: The free tier of OpenWeatherMap requires specific API endpoints. onecall might not be available unless you've activated it in your account.
+    How to Fix:
+    Verify Your API Key: Log in to your OpenWeatherMap account and check if the API key is active and valid.
+    Update the API Key in Your Code:
+    javascript
+    Copy
+    Edit
+    var apiKey = "your_actual_api_key_here";
+    If you’ve confirmed the API key is correct but still get errors, check your OpenWeatherMap account settings to ensure onecall API is enabled for your key.
+    
+    3. TypeError: Cannot Read Properties of Undefined
+    This error occurs because data.current.weather is undefined in the response. Since the 401 error causes data to be incomplete, the error cascades.
+    
+    Add Error Handling:
+    Update your fetch call to handle errors gracefully and check if data.current exists before attempting to access its properties:
+    
+    javascript
+    Copy
+    Edit
     fetch(queryURL2)
       .then(function (res) {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
         return res.json();
       })
       .then(function (data) {
-        // variable for main weather icon
+        if (!data.current || !data.daily) {
+          throw new Error("Incomplete weather data in the API response.");
+        }
+    
+        // Continue with your code to process weather data
         var icon = data.current.weather[0].icon;
-        // Set attribute of the Main Displayed Icon to be image source from the API
         mainDisplayImage.setAttribute(
           "src",
-          `http://openweathermap.org/img/wn/${icon}@2x.png`
+          `https://openweathermap.org/img/wn/${icon}@2x.png`
         );
+    
+        // Render the rest of the weather data...
+      })
+      .catch(function (error) {
+        console.error("Error occurred:", error.message);
+        alert("An error occurred while fetching weather data. Please try again.");
+      });
 
         // The requested city's temperature, windspeed, and humidity specifically pulled from the available weather data and rendering it on the DOM
         mainTemp.textContent = data.current.temp + " °F";
