@@ -97,7 +97,7 @@ var apiKey = "dc160b08684ed2f6e98f607f04ad69fc";
 function getWeatherInfo(city) {
   // Current Weather Data had to be used to get the city(s) location information
   var queryURL1 =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/3.0/weather?q=" +
     city +
     "&appid=" +
     apiKey;
@@ -130,7 +130,7 @@ function getWeatherInfo(city) {
     console.log(`Latitude: ${lat}, Longitude: ${lon}`);
 
     // var for OneCall API URL using temperate literal to input the coordinates of the city selected by user in order to obtain specific city's weather information
-    var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+    var queryURL2 = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
     // requesting/fetching weather data from the API above
 
     fetch(queryURL2)
